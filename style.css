@@ -1,0 +1,26 @@
+
+body {
+  background-color: #f0f0f0;
+  font-family: sans-serif;
+  text-align: center;
+  padding-top: 50px;
+}
+
+h1 {
+  color: royalblue;
+  font-size: 2.5em;
+}
+
+.ycayw {
+  font-size: 18vw;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  width: 100vw;
+  text-align: center;
+  color: #222;
+  margin: 0;
+  line-height: 1.1;
+  font-family: sans-serif;
+  word-break: break-all;
+}
+
