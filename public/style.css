@@ -1,0 +1,88 @@
+
+body {
+  background-color: #f0f0f0;
+  font-family: sans-serif;
+  text-align: center;
+  padding-top: 50px;
+}
+
+/* Lighter gray for pages 2 and 3 */
+body.page2, body.page3 {
+  background-color: #a0a0a0;
+  padding-top: 0;
+}
+
+h1 {
+  color: royalblue;
+  font-size: 2.5em;
+}
+
+.ycayw {
+  font-size: 18vw;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  width: 100vw;
+  text-align: center;
+  color: #222;
+  margin: 0;
+  line-height: 1.1;
+  font-family: sans-serif;
+  word-break: break-all;
+}
+
+.ksp-banner {
+  width: 100vw;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ksp-banner-img {
+  width: 100vw;
+  height: auto;
+  max-width: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: royalblue;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .nav-link {
+    width: 200px;
+    text-align: center;
+  }
+}
+
