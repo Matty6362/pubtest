@@ -7,7 +7,12 @@ body {
 }
 
 /* Lighter gray for pages 2 and 3 */
-body.page2, body.page3 {
+body.page2 {
+  background-color: #fff;
+  padding-top: 0;
+}
+
+body.page3 {
   background-color: #a0a0a0;
   padding-top: 0;
 }
@@ -37,7 +42,6 @@ h1 {
     padding: 0;
     overflow: hidden;
     /* Remove position: absolute, top, and left */
-  }
 }
 
 .ksp-banner-img {
