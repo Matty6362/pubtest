@@ -1,0 +1,40 @@
+
+body.page2 {
+  background-color: #AAF0D1;
+  padding-top: 0;
+}
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.navigation {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: royalblue;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #0056b3;
+}
+
