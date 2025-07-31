@@ -37,11 +37,11 @@
     }
 
     .logo {
-      text-align: center;
+      text-align: left;
       background: url('Kelley.Green.png') no-repeat center center;
       background-size: cover;
-      padding: 30px;
-      border-radius: 20px 20px 0 0;
+      padding: 30px 30px 30px 15px;
+      border-radius: 20px 20px 20px 20px;
     }
 
     .logo h1 {
@@ -101,7 +101,7 @@
     .submit-btn {
       width: 100%;
       padding: 15px;
-      background: #228B22;
+      background: #005c03;
       color: white;
       border: none;
       border-radius: 10px;
@@ -154,31 +154,31 @@
 <body>
       <div class="container">
       <div class="logo">
-        <img src="Kelley.logo.png" alt="Kelley Logo" style="max-width: 300px; height: auto;">
+        <img src="Kelley.logo.png" alt="Kelley Logo" style="max-width: 324px; height: auto;">
       </div>
       
-      <div style="padding: 30px;">
+            <div style="padding: 30px;">
         <div class="raffle-info">
-      <div class="raffle-name">Free Pizza Friday!</div>
-      <div class="drawing-date">Drawing: Friday, August 2nd, 2025</div>
-    </div>
-    
-    <form id="raffleForm">
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName" required>
-        <div class="error" id="firstNameError">Please enter your first name</div>
-      </div>
-      
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required>
-        <div class="error" id="emailError">Please enter a valid email address</div>
-      </div>
-      
-      <button type="submit" class="submit-btn">Enter Raffle</button>
-              <div class="success" id="successMessage">Entry submitted successfully!</div>
-      </form>
+          <div class="raffle-name">Free Pizza Friday!</div>
+          <div class="drawing-date">Drawing: Friday, August 2nd, 2025</div>
+        </div>
+        
+        <form id="raffleForm">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <div class="error" id="firstNameError">Please enter your first name</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error" id="emailError">Please enter a valid email address</div>
+          </div>
+          
+          <button type="submit" class="submit-btn">Enter Raffle</button>
+          <div class="success" id="successMessage">Entry submitted successfully!</div>
+        </form>
       </div>
     </div>
 

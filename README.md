@@ -29,7 +29,7 @@ This Minimum-Most-Viable-Product (MMVP) streamlines the process of capturing cus
 3. **Submission Flow**
    - Upon submission:
      - The End User is taken to a confirmation page.
-     - An automatic confirmation email is sent to the provided email address.
+     - An automatic confirmation email is sent via Resend to the provided email address.
      - The submitted name and email are stored in a scalable cloud database.
 
 4. **Future Easter Egg**
@@ -40,6 +40,7 @@ This Minimum-Most-Viable-Product (MMVP) streamlines the process of capturing cus
 - **Frontend**: Mobile-first HTML/CSS/JS
 - **Backend**: Node.js API
 - **Database**: Supabase
+- **Email Service**: Resend
 - **Hosting**: Vercel
 
 ## 🚀 Goals
