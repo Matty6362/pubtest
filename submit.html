@@ -31,7 +31,7 @@
       padding: 0;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
       margin-top: 20px;
       overflow: hidden;
     }
@@ -40,8 +40,11 @@
       text-align: left;
       background: url('Kelley.Green.png') no-repeat center center;
       background-size: cover;
-      padding: 30px 30px 30px 15px;
+      padding: 20px 20px 20px 20px;
       border-radius: 20px 20px 20px 20px;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     .logo h1 {
@@ -135,6 +138,22 @@
       display: none;
     }
 
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      .container {
+        max-width: 95%;
+        margin: 10px auto;
+      }
+      
+      .raffle-name {
+        font-size: 1.5em;
+      }
+      
+      .form-group input {
+        font-size: 16px; /* Prevents zoom on iOS */
+      }
+    }
+
     @media (max-width: 480px) {
       .container {
         padding: 20px;
@@ -154,7 +173,7 @@
 <body>
       <div class="container">
       <div class="logo">
-        <img src="Kelley.logo.png" alt="Kelley Logo" style="max-width: 324px; height: auto;">
+        <img src="Kelley.logo.png" alt="Kelley Logo" style="max-width: 100%; height: auto; margin-left: -10px;">
       </div>
       
             <div style="padding: 30px;">

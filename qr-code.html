@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pub Tool MMVP - QR Code</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        // Fallback if CDN fails
+        window.addEventListener('load', function() {
+            if (typeof QRCode === 'undefined') {
+                console.log('QRCode library not loaded, trying alternative...');
+                // Create a simple text-based QR code alternative
+                document.getElementById('qrcode').innerHTML = `
+                    <div style="background: white; padding: 20px; border-radius: 10px; text-align: center;">
+                        <h3 style="color: black; margin: 0 0 10px 0;">📱 Pub Tool MMVP</h3>
+                        <p style="color: black; margin: 0; font-size: 12px; word-break: break-all;">
+                            http://10.0.0.84:8080/submit.html
+                        </p>
+                        <p style="color: #666; margin: 10px 0 0 0; font-size: 10px;">
+                            Copy this URL to your iPhone browser
+                        </p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        #qrcode {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+        .url {
+            margin-top: 20px;
+            font-size: 1.1em;
+            word-break: break-all;
+            max-width: 300px;
+        }
+        .instructions {
+            margin-top: 30px;
+            font-size: 1em;
+            max-width: 400px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍺 Pub Tool MMVP</h1>
+        <div id="qrcode"></div>
+        <div class="url">http://10.0.0.84:8080/submit.html</div>
+        <div class="instructions">
+            <strong>Instructions:</strong><br>
+            1. Open your iPhone camera<br>
+            2. Point it at the QR code above<br>
+            3. Tap the notification that appears<br>
+            4. Your Pub Tool MMVP will open! 🎉
+        </div>
+    </div>
+
+    <script>
+        // Generate QR code for the Pub Tool MMVP submit page
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (typeof QRCode !== 'undefined') {
+                    QRCode.toCanvas(document.getElementById('qrcode'), 'http://10.0.0.84:8080/submit.html', {
+                        width: 256,
+                        margin: 2,
+                        color: {
+                            dark: '#000000',
+                            light: '#FFFFFF'
+                        }
+                    }, function (error) {
+                        if (error) {
+                            console.error('QR Code generation failed:', error);
+                            // Fallback to text display
+                            document.getElementById('qrcode').innerHTML = `
+                                <div style="background: white; padding: 20px; border-radius: 10px; text-align: center;">
+                                    <h3 style="color: black; margin: 0 0 10px 0;">📱 Pub Tool MMVP</h3>
+                                    <p style="color: black; margin: 0; font-size: 12px; word-break: break-all;">
+                                        http://10.0.0.84:8080/submit.html
+                                    </p>
+                                    <p style="color: #666; margin: 10px 0 0 0; font-size: 10px;">
+                                        Copy this URL to your iPhone browser
+                                    </p>
+                                </div>
+                            `;
+                        } else {
+                            console.log('QR Code generated successfully!');
+                        }
+                    });
+                }
+            }, 1000); // Wait 1 second for library to load
+        });
+    </script>
+</body>
+</html> 
