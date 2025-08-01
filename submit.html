@@ -230,12 +230,11 @@
         // Simulate form submission
         console.log('Submitting:', { firstName, email });
         
-        // Show success message
-        document.getElementById('successMessage').style.display = 'block';
+        // Store data in localStorage for confirmation page
+        localStorage.setItem('raffleEntry', JSON.stringify({ firstName, email }));
         
-        // Clear form
-        document.getElementById('firstName').value = '';
-        document.getElementById('email').value = '';
+        // Redirect to confirmation page
+        window.location.href = 'confirmation.html';
         
         // In the future, this would send data to your backend
         // fetch('/api/submit-raffle', {

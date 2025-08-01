@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Pub Tool MMVP - Entry Confirmed</title>
+    <style>
+        body {
+            min-height: 100vh;
+            background: url('Beer.2.png') no-repeat center center;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 18px;
+            padding: 0;
+            box-shadow: 0 9px 26px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 440px;
+            margin-top: 18px;
+            overflow: hidden;
+        }
+
+        .logo {
+            text-align: left;
+            background: url('Kelley.Green.png') no-repeat center center;
+            background-size: cover;
+            padding: 18px 18px 18px 18px;
+            border-radius: 18px 18px 18px 18px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .logo h1 {
+            color: #333;
+            font-size: 2.5em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            padding: 26px;
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 4em;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .confirmation-message {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .email-notice {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .email-notice h3 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .email-notice p {
+            color: #6c757d;
+            font-size: 0.95em;
+            margin: 0;
+        }
+
+        .back-btn {
+            width: 100%;
+            padding: 13px;
+            background: #005c03;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-btn:active {
+            transform: translateY(0);
+        }
+
+        .raffle-details {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .raffle-details h4 {
+            color: #856404;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .raffle-details p {
+            color: #856404;
+            font-size: 0.9em;
+            margin: 0;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;
+                margin: 10px auto;
+            }
+            
+            .confirmation-title {
+                font-size: 1.5em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                margin-top: 10px;
+            }
+            
+            .logo h1 {
+                font-size: 2em;
+            }
+            
+            .confirmation-title {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="Kelley.logo.png" alt="Kelley Logo" style="max-width: 100%; height: auto; margin-left: -10px;">
+        </div>
+        
+        <div class="content">
+            <div class="success-icon">✅</div>
+            
+            <div class="confirmation-title">Entry Confirmed!</div>
+            
+            <div class="confirmation-message">
+                Thank you for entering our raffle! Your submission has been received and recorded.
+            </div>
+            
+            <div class="confirmation-message">
+                A confirmation email has been sent to <span id="userEmail" style="font-weight: bold; color: #2c3e50;">the address provided on the preceding page</span>. Please check your inbox (and spam folder) for details about your entry.
+            </div>
+            
+            <button class="back-btn" onclick="window.location.href='submit.html'">
+                Enter Another Raffle
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Add some nice animation when the page loads and populate user email
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            
+            // Get user email from localStorage and display it
+            try {
+                const raffleEntry = JSON.parse(localStorage.getItem('raffleEntry'));
+                if (raffleEntry && raffleEntry.email) {
+                    document.getElementById('userEmail').textContent = raffleEntry.email;
+                }
+            } catch (e) {
+                console.log('No raffle entry data found');
+            }
+            
+            setTimeout(() => {
+                container.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html> 
