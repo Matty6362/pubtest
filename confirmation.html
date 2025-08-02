@@ -179,6 +179,8 @@
             
             <div class="confirmation-title">Entry Confirmed!</div>
             
+            <div class="user-name" id="userName" style="font-size: 1.3em; color: #2c3e50; margin-bottom: 15px; font-weight: 600;"></div>
+            
             <div class="confirmation-message">
                 Thank you for entering our raffle! Your submission has been received and recorded.
             </div>
@@ -200,11 +202,16 @@
             container.style.opacity = '0';
             container.style.transform = 'translateY(20px)';
             
-            // Get user email from localStorage and display it
+            // Get user data from localStorage and display it
             try {
                 const raffleEntry = JSON.parse(localStorage.getItem('raffleEntry'));
-                if (raffleEntry && raffleEntry.email) {
-                    document.getElementById('userEmail').textContent = raffleEntry.email;
+                if (raffleEntry) {
+                    if (raffleEntry.email) {
+                        document.getElementById('userEmail').textContent = raffleEntry.email;
+                    }
+                    if (raffleEntry.firstName) {
+                        document.getElementById('userName').textContent = raffleEntry.firstName + ' -';
+                    }
                 }
             } catch (e) {
                 console.log('No raffle entry data found');
