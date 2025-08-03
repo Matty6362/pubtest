@@ -207,6 +207,10 @@ app.get('/Kelley.Green.png', (req, res) => {
     res.sendFile(__dirname + '/Kelley.Green.png');
 });
 
+app.get('/Beer.2.png', (req, res) => {
+    res.sendFile(__dirname + '/Beer.2.png');
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`🚀 Pub Tool MMVP API server running on port ${PORT}`);
