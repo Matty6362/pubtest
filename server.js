@@ -16,7 +16,7 @@ const resend = new Resend(process.env.RESEND_API_KEY || 're_XrUfpwHy_5GQaWMG72aj
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.')); // Serve static files from current directory
+app.use(express.static(__dirname)); // Serve static files from current directory
 
 // Email template function
 function createEmailTemplate(firstName, email) {
@@ -191,11 +191,6 @@ app.get('/api/health', (req, res) => {
 // Serve the main page (submit form)
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/submit.html');
-});
-
-// Easter egg route
-app.get('/easter-egg', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
 });
 
 // Start server
