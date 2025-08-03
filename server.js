@@ -188,6 +188,11 @@ app.get('/api/health', (req, res) => {
     });
 });
 
+// Serve the main page
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`🚀 Pub Tool MMVP API server running on port ${PORT}`);
