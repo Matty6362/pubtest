@@ -188,8 +188,13 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// Serve the main page
+// Serve the main page (submit form)
 app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/submit.html');
+});
+
+// Easter egg route
+app.get('/easter-egg', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
