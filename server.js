@@ -193,6 +193,11 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/submit.html');
 });
 
+// Serve confirmation page
+app.get('/confirmation.html', (req, res) => {
+    res.sendFile(__dirname + '/confirmation.html');
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`🚀 Pub Tool MMVP API server running on port ${PORT}`);
