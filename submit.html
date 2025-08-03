@@ -227,21 +227,42 @@
       }
       
       if (isValid) {
-        // Simulate form submission
+        // Show loading state
+        const submitBtn = document.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.disabled = true;
+        
         console.log('Submitting:', { firstName, email });
         
         // Store data in localStorage for confirmation page
         localStorage.setItem('raffleEntry', JSON.stringify({ firstName, email }));
         
-        // Redirect to confirmation page
-        window.location.href = 'confirmation.html';
-        
-        // In the future, this would send data to your backend
-        // fetch('/api/submit-raffle', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ firstName, email })
-        // });
+        // Send data to backend API
+        fetch('/api/submit-raffle', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ firstName, email })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            console.log('API Response:', data);
+            // Redirect to confirmation page
+            window.location.href = 'confirmation.html';
+          } else {
+            throw new Error(data.message || 'Submission failed');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          // Reset button state
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          
+          // Show error message
+          alert('Sorry, there was an error submitting your entry. Please try again.');
+        });
       }
     });
   </script>
