@@ -11,7 +11,7 @@ console.log('API Key loaded:', process.env.RESEND_API_KEY ? 'Yes' : 'No');
 console.log('API Key starts with:', process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.substring(0, 10) + '...' : 'Not found');
 
 // Initialize Resend
-const resend = new Resend('re_XrUfpwHy_5GQaWMG72ajoUEwY7hbqRNv7');
+const resend = new Resend(process.env.RESEND_API_KEY || 're_XrUfpwHy_5GQaWMG72ajoUEwY7hbqRNv7');
 
 // Middleware
 app.use(cors());
