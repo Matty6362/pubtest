@@ -198,6 +198,15 @@ app.get('/confirmation.html', (req, res) => {
     res.sendFile(__dirname + '/confirmation.html');
 });
 
+// Serve static images
+app.get('/Kelley.logo.png', (req, res) => {
+    res.sendFile(__dirname + '/Kelley.logo.png');
+});
+
+app.get('/Kelley.Green.png', (req, res) => {
+    res.sendFile(__dirname + '/Kelley.Green.png');
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`🚀 Pub Tool MMVP API server running on port ${PORT}`);
