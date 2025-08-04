@@ -148,8 +148,9 @@ app.post('/api/submit-raffle', async (req, res) => {
         const emailHtml = createEmailTemplate(firstName, email);
         console.log('Sending email to:', email);
         
+        let emailResult;
         try {
-            const emailResult = await resend.emails.send({
+            emailResult = await resend.emails.send({
                 from: 'onboarding@resend.dev',
                 to: [email],
                 subject: '🍺 Pub Tool MMVP - Your Raffle Entry is Confirmed!',
@@ -178,7 +179,7 @@ app.post('/api/submit-raffle', async (req, res) => {
             success: true,
             message: 'Raffle entry submitted successfully',
             emailSent: true,
-            entryId: emailResult.id
+            entryId: emailResult ? emailResult.id : null
         });
 
     } catch (error) {
