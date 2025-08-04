@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 // Check if API key is loaded
 console.log('API Key loaded:', process.env.RESEND_API_KEY ? 'Yes' : 'No');
 console.log('API Key starts with:', process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.substring(0, 10) + '...' : 'Not found');
+console.log('Using API key:', process.env.RESEND_API_KEY || 're_XrUfpwHy_5GQaWMG72ajoUEwY7hbqRNv7');
 
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY || 're_XrUfpwHy_5GQaWMG72ajoUEwY7hbqRNv7');
@@ -147,14 +148,25 @@ app.post('/api/submit-raffle', async (req, res) => {
         const emailHtml = createEmailTemplate(firstName, email);
         console.log('Sending email to:', email);
         
-        const emailResult = await resend.emails.send({
-            from: 'onboarding@resend.dev',
-            to: [email],
-            subject: '🍺 Pub Tool MMVP - Your Raffle Entry is Confirmed!',
-            html: emailHtml
-        });
+        try {
+            const emailResult = await resend.emails.send({
+                from: 'onboarding@resend.dev',
+                to: [email],
+                subject: '🍺 Pub Tool MMVP - Your Raffle Entry is Confirmed!',
+                html: emailHtml
+            });
 
-        console.log('Email sent successfully:', emailResult);
+            console.log('Email sent successfully:', emailResult);
+            console.log('Email ID:', emailResult.id);
+        } catch (emailError) {
+            console.error('Email sending failed:', emailError);
+            console.error('Email error details:', {
+                message: emailError.message,
+                status: emailError.status,
+                code: emailError.code
+            });
+            throw emailError;
+        }
 
         // TODO: Store data in Supabase (future implementation)
         // const { data, error } = await supabase
