@@ -147,11 +147,13 @@ app.post('/api/submit-raffle', async (req, res) => {
         // Send confirmation email via Resend
         const emailHtml = createEmailTemplate(firstName, email);
         console.log('Sending email to:', email);
+        console.log('Email HTML length:', emailHtml.length);
+        console.log('Resend instance:', resend ? 'Initialized' : 'Not initialized');
         
         let emailResult;
         try {
             emailResult = await resend.emails.send({
-                from: 'onboarding@resend.dev',
+                from: 'Pub Tool MMVP <onboarding@resend.dev>',
                 to: [email],
                 subject: '🍺 Pub Tool MMVP - Your Raffle Entry is Confirmed!',
                 html: emailHtml
