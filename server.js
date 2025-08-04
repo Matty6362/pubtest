@@ -183,6 +183,13 @@ app.post('/api/submit-raffle', async (req, res) => {
 
     } catch (error) {
         console.error('Error processing raffle entry:', error);
+        console.error('Full error details:', {
+            name: error.name,
+            message: error.message,
+            stack: error.stack,
+            code: error.code,
+            status: error.status
+        });
         
         res.status(500).json({
             success: false,
