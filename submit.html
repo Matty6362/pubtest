@@ -237,12 +237,17 @@
         localStorage.setItem('raffleEntry', JSON.stringify({ firstName, email }));
         
         // Send data to backend API
+        console.log('About to send fetch request to /api/submit-raffle');
         fetch('/api/submit-raffle', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ firstName, email })
         })
-        .then(response => response.json())
+        .then(response => {
+          console.log('Response received:', response);
+          console.log('Response status:', response.status);
+          return response.json();
+        })
         .then(data => {
           if (data.success) {
             console.log('API Response:', data);
