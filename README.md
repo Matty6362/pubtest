@@ -1,53 +1,111 @@
-# Pub Tool MMVP
+# Pub Tool MMVP - Raffle System
 
-**Pub Tool** is a mobile-first web application designed to onboard participants into a business-run raffle — typically for a food item, gift card, or other giveaway.
+A complete raffle entry system with email confirmations and database storage.
 
-## 🎯 Purpose
+## Features
 
-This Minimum-Most-Viable-Product (MMVP) streamlines the process of capturing customer interest and participation via a branded, mobile-friendly experience.
+- ✅ Raffle entry form with name and email collection
+- ✅ Confirmation page displaying user's name and email
+- ✅ Database storage in Supabase
+- ✅ Email confirmations via Resend
+- ✅ Mobile-responsive design
+- ✅ Real-time form validation
 
-## 🧑‍💼 Roles
+## Setup Instructions
 
-- **Producer**: The business or person running the raffle.
-- **End User**: The Producer's client, customer, or follower.
+### 1. Environment Variables
 
-## 📱 How It Works
+Create a `.env` file in the root directory with the following variables:
 
-1. **QR Code Access**  
-   The End User scans a QR code which links to the Producer's branded raffle page.
+```env
+# Resend API Configuration
+RESEND_API_KEY=your_resend_api_key_here
 
-2. **Raffle Entry Page**  
-   The page displays:
-   - The Producer's branding
-   - The name of the raffle
-   - The drawing date
-   - Two input fields:  
-     - First Name  
-     - Email Address  
-   - A **Submit** button
+# Supabase Configuration
+SUPABASE_URL=your_supabase_project_url_here
+SUPABASE_ANON_KEY=your_supabase_anon_key_here
 
-3. **Submission Flow**
-   - Upon submission:
-     - The End User is taken to a confirmation page.
-     - An automatic confirmation email is sent via Resend to the provided email address.
-     - The submitted name and email are stored in a scalable cloud database.
+# Server Configuration
+PORT=3000
+NODE_ENV=development
+```
 
-4. **Future Easter Egg**
-   - The current placeholder page ("green with letters like GO MATT GO") will eventually serve as an Easter egg within the app.
+### 2. Supabase Setup
 
-## 🧰 Stack
+1. Create a new Supabase project at [supabase.com](https://supabase.com)
+2. Go to the SQL Editor in your Supabase dashboard
+3. Run the SQL script from `supabase-setup.sql` to create the `raffle_entries` table
+4. Copy your project URL and anon key from Settings > API
 
-- **Frontend**: Mobile-first HTML/CSS/JS
-- **Backend**: Node.js API
-- **Database**: Supabase
-- **Email Service**: Resend
-- **Hosting**: Vercel
+### 3. Resend Setup
 
-## 🚀 Goals
+1. Create a Resend account at [resend.com](https://resend.com)
+2. Generate an API key from the dashboard
+3. **Important**: Verify your domain in Resend or use a verified sender address
 
-- Easy entry for participants
-- Automated confirmation via email
-- Clean, branded user experience for each Producer
-- Scalable, secure data handling
+### 4. Installation
 
---- 
+```bash
+npm install
+```
+
+### 5. Local Development
+
+```bash
+npm run dev
+```
+
+The app will be available at `http://localhost:3000`
+
+### 6. Deployment
+
+Deploy to Vercel:
+
+```bash
+vercel --prod
+```
+
+## Database Schema
+
+The `raffle_entries` table contains:
+- `id` - Primary key
+- `first_name` - User's first name
+- `email` - User's email address
+- `created_at` - Timestamp of entry
+- `updated_at` - Last update timestamp
+
+## API Endpoints
+
+- `POST /api/submit-raffle` - Submit raffle entry
+- `GET /api/health` - Health check
+- `GET /` - Main raffle form
+- `GET /confirmation.html` - Confirmation page
+
+## File Structure
+
+```
+├── server.js              # Main server file
+├── submit.html            # Raffle entry form
+├── confirmation.html      # Confirmation page
+├── supabase-setup.sql     # Database setup script
+├── env.example           # Environment variables template
+├── package.json          # Dependencies
+└── README.md            # This file
+```
+
+## Troubleshooting
+
+### Email Not Sending
+- Check Resend API key is correct
+- Verify sender domain in Resend dashboard
+- Check Vercel logs for detailed error messages
+
+### Database Connection Issues
+- Verify Supabase URL and anon key
+- Check RLS policies are configured correctly
+- Ensure table exists in Supabase
+
+### Form Submission Errors
+- Check browser console for JavaScript errors
+- Verify all environment variables are set
+- Check server logs for detailed error information 

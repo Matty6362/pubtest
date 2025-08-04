@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { Resend } = require('resend');
+const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config();
 
 const app = express();
@@ -13,6 +14,14 @@ console.log('Using API key:', process.env.RESEND_API_KEY || 're_XrUfpwHy_5GQaWMG
 
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY || 're_XrUfpwHy_5GQaWMG72ajoUEwY7hbqRNv7');
+
+// Initialize Supabase
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+console.log('Supabase URL:', supabaseUrl ? 'Configured' : 'Not configured');
+console.log('Supabase Key:', supabaseKey ? 'Configured' : 'Not configured');
 
 // Middleware
 app.use(cors());
@@ -163,7 +172,8 @@ app.post('/api/submit-raffle', async (req, res) => {
                 from: 'onboarding@resend.dev',
                 to: [email],
                 subject: '🍺 Pub Tool MMVP - Your Raffle Entry is Confirmed!',
-                html: emailHtml
+                html: emailHtml,
+                text: `Hi ${firstName},\n\nThank you for entering our raffle! Your submission has been received and recorded successfully.\n\nEntry Details:\n- Name: ${firstName}\n- Email: ${email}\n- Entry Date: ${new Date().toLocaleDateString()}\n\nWe'll notify you if you're selected as a winner. Good luck!\n\n© 2025 Pub Tool MMVP. All rights reserved.`
             });
 
             console.log('Email sent successfully:', emailResult);
@@ -179,17 +189,30 @@ app.post('/api/submit-raffle', async (req, res) => {
             throw emailError;
         }
 
-        // TODO: Store data in Supabase (future implementation)
-        // const { data, error } = await supabase
-        //     .from('raffle_entries')
-        //     .insert([{ first_name: firstName, email: email }]);
+        // Store data in Supabase
+        console.log('Storing data in Supabase...');
+        const { data: dbData, error: dbError } = await supabase
+            .from('raffle_entries')
+            .insert([{ 
+                first_name: firstName, 
+                email: email,
+                created_at: new Date().toISOString()
+            }]);
+
+        if (dbError) {
+            console.error('Supabase insert error:', dbError);
+            throw new Error('Failed to store entry in database');
+        }
+
+        console.log('Data stored in Supabase:', dbData);
 
         // Return success response
         res.json({
             success: true,
             message: 'Raffle entry submitted successfully',
-            emailSent: true,
-            entryId: emailResult ? emailResult.id : null
+            emailSent: emailResult && emailResult.id ? true : false,
+            entryId: emailResult ? emailResult.id : null,
+            dbEntryId: dbData ? dbData[0]?.id : null
         });
 
     } catch (error) {
