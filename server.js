@@ -152,8 +152,15 @@ app.post('/api/submit-raffle', async (req, res) => {
         
         let emailResult;
         try {
+            console.log('About to call resend.emails.send with:', {
+                from: 'onboarding@resend.dev',
+                to: [email],
+                subject: '🍺 Pub Tool MMVP - Your Raffle Entry is Confirmed!',
+                htmlLength: emailHtml.length
+            });
+            
             emailResult = await resend.emails.send({
-                from: 'Pub Tool MMVP <onboarding@resend.dev>',
+                from: 'onboarding@resend.dev',
                 to: [email],
                 subject: '🍺 Pub Tool MMVP - Your Raffle Entry is Confirmed!',
                 html: emailHtml
@@ -161,6 +168,7 @@ app.post('/api/submit-raffle', async (req, res) => {
 
             console.log('Email sent successfully:', emailResult);
             console.log('Email ID:', emailResult.id);
+            console.log('Full emailResult:', JSON.stringify(emailResult, null, 2));
         } catch (emailError) {
             console.error('Email sending failed:', emailError);
             console.error('Email error details:', {
