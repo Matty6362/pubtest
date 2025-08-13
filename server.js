@@ -168,10 +168,10 @@ app.post('/api/submit-raffle', async (req, res) => {
                 htmlLength: emailHtml.length
             });
             
-            emailResult = await resend.emails.send({
-                from: 'onboarding@resend.dev',
-                to: [email],
-                subject: '🍺 Pub Tool MMVP - Your Raffle Entry is Confirmed!',
+                    emailResult = await resend.emails.send({
+            from: 'Pub Tool MMVP <noreply@nubthing.com>',
+            to: [email],
+            subject: '🍺 Pub Tool MMVP - Your Raffle Entry is Confirmed!',
                 html: emailHtml,
                 text: `Hi ${firstName},\n\nThank you for entering our raffle! Your submission has been received and recorded successfully.\n\nEntry Details:\n- Name: ${firstName}\n- Email: ${email}\n- Entry Date: ${new Date().toLocaleDateString()}\n\nWe'll notify you if you're selected as a winner. Good luck!\n\n© 2025 Pub Tool MMVP. All rights reserved.`
             });
@@ -192,7 +192,7 @@ app.post('/api/submit-raffle', async (req, res) => {
         // Store data in Supabase
         console.log('Storing data in Supabase...');
         const { data: dbData, error: dbError } = await supabase
-            .from('raffle_entries')
+            .from('nubthing_entries')
             .insert([{ 
                 first_name: firstName, 
                 email: email,
