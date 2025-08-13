@@ -2,6 +2,15 @@
 
 A complete raffle entry system with email confirmations and database storage.
 
+## 🎉 Status: Fully Deployed and Connected!
+
+- ✅ **Frontend**: Live on Vercel
+- ✅ **Backend**: Node.js/Express API  
+- ✅ **Database**: Supabase with RLS security
+- ✅ **Email**: Resend integration with `noreply@nubthing.com`
+- ✅ **Git**: Connected to GitHub with auto-deployments
+- ✅ **Domain**: Ready for `kelleysboston.com` setup
+
 ## Features
 
 - ✅ Raffle entry form with name and email collection
